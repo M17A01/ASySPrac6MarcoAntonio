@@ -1,0 +1,900 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Pr&aacute;ctica 7: Sistemas diferenciales y en diferencias</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-28"><meta name="DC.source" content="ASySPrac6MarcoRodriguez.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Pr&aacute;ctica 7: Sistemas diferenciales y en diferencias</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Problema 1.1 (Sistemas Diferenciales)</a></li><li><a href="#2">Problema 1.2 (Sistemas Diferenciales)</a></li><li><a href="#3">Problema 1.3 (Sistemas Diferenciales)</a></li><li><a href="#4">Problema 1.4 (Sistemas Diferenciales)</a></li><li><a href="#5">Problema 1.5 (Sistemas Diferenciales)</a></li><li><a href="#6">Problema 1.6 (Sistemas Diferenciales)</a></li><li><a href="#7">Problema 2.1 (Sistemas en Diferencias)</a></li><li><a href="#8">Problema 2.2 (Sistemas en Diferencias)</a></li><li><a href="#9">Problema 2.3 (Sistemas en Diferencias)</a></li><li><a href="#10">Problema 2.4 (Sistemas en Diferencias)</a></li><li><a href="#11">Problema 2.5 (Sistemas en Diferencias)</a></li><li><a href="#12">Problema 2.6 (Sistemas en Diferencias)</a></li></ul></div><h2 id="1">Problema 1.1 (Sistemas Diferenciales)</h2><p>Funci&oacute;n de transferencia del sistema</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq02499968060523958163.png" alt="$\ddot{y}+2\dot{y}+2y=\dot{x}+2x$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq05733120675232018958.png" alt="$x(t)=e^{-t}u(t)$"> Y condiciones inicales: <img src="ASySPrac6MarcoRodriguez_eq08511338008436739230.png" alt="${y}'(0)=0, y(0)=0$"></p><p>Conociendo que la transformada de Laplace de <img src="ASySPrac6MarcoRodriguez_eq04918592215516195440.png" alt="$x(t)=e^{-t}u(t) \Leftrightarrow X(s)=\frac{1}{s+1}$"> y que <img src="ASySPrac6MarcoRodriguez_eq06449470415254547625.png" alt="$Y(s)=\frac{\frac{2}{s+1}+\frac{s}{s+1}}{s^{2}+2s+2}$"></p><p>sustituyendo en <img src="ASySPrac6MarcoRodriguez_eq07630755068931209246.png" alt="$H(s)=\frac{Y(s)}{X(s)}$"> tenemos: <img src="ASySPrac6MarcoRodriguez_eq14641740122678264448.png" alt="$H(s)=\frac{s+2}{s^{2}+2s+2}$"></p><h2 id="2">Problema 1.2 (Sistemas Diferenciales)</h2><p>Respuesta al impulso</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq02499968060523958163.png" alt="$\ddot{y}+2\dot{y}+2y=\dot{x}+2x$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq01612504647811037796.png" alt="$x(t)=\delta(t)$"> Y condiciones inicales: <img src="ASySPrac6MarcoRodriguez_eq03980370533641409157.png" alt="${y}'(0)=1, y(0)=1$"></p><div><ul><li>Laplace</li></ul></div><pre class="codeinput">syms <span class="string">t</span>;
+laplace2016a([2 2 1], [2 1], [1 1], [0], dirac(t), 5, 1)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA DE LAPLACE y subtituimos condiciones iniciales
+ 
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 3
+
+=
+2 X(s) + s X(s)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 3
+
+=
+s + 2
+
+ 
+DESPEJAMOS Y(s)
+ 
+Y(s)=
+   2 s + 5
+------------
+ 2
+s  + 2 s + 2
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(s)
+ 
+Y(s)=
+   2 s + 5
+------------
+ 2
+s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+        /          3 sin(t) \
+exp(-t) | cos(t) + -------- | 2
+        \              2    /
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_01.png" alt=""> <h2 id="3">Problema 1.3 (Sistemas Diferenciales)</h2><p>Respuesta a entrada cero</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq02499968060523958163.png" alt="$\ddot{y}+2\dot{y}+2y=\dot{x}+2x$"> Con entrada cero: <img src="ASySPrac6MarcoRodriguez_eq00736050422152422280.png" alt="$x(t)=0$"> Y condiciones inicales: <img src="ASySPrac6MarcoRodriguez_eq03980370533641409157.png" alt="${y}'(0)=1, y(0)=1$"></p><div><ul><li>Laplace</li></ul></div><pre class="codeinput">laplace2016a([2 2 1], [2 1], [1 1], [0], t.*0, 5, 2)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA DE LAPLACE y subtituimos condiciones iniciales
+ 
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 3
+
+=
+2 X(s) + s X(s)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 3
+
+=
+0
+
+ 
+DESPEJAMOS Y(s)
+ 
+Y(s)=
+    s + 3
+------------
+ 2
+s  + 2 s + 2
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(s)
+ 
+Y(s)=
+    s + 3
+------------
+ 2
+s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+exp(-t) (cos(t) + 2 sin(t))
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_02.png" alt=""> <h2 id="4">Problema 1.4 (Sistemas Diferenciales)</h2><p>Respuesta a estado cero</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq02499968060523958163.png" alt="$\ddot{y}+2\dot{y}+2y=\dot{x}+2x$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq05733120675232018958.png" alt="$x(t)=e^{-t}u(t)$"> Y estado cero: <img src="ASySPrac6MarcoRodriguez_eq08511338008436739230.png" alt="${y}'(0)=0, y(0)=0$"></p><div><ul><li>Laplace y Fourier</li></ul></div><pre class="codeinput">laplace2016a([2 2 1], [2 1], [0 0], [0], exp(-t).*heaviside(t), 5, 3)
+fourier2016a([2 2 1], [2 1], exp(-t).*heaviside(t), 5, 4)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA DE LAPLACE y subtituimos condiciones iniciales
+ 
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+=
+2 X(s) + s X(s)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+=
+  s       2
+----- + -----
+s + 1   s + 1
+
+ 
+DESPEJAMOS Y(s)
+ 
+Y(s)=
+       s + 2
+-------------------
+ 3      2
+s  + 3 s  + 4 s + 2
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(s)
+ 
+Y(s)=
+  1           s
+----- - ------------
+s + 1    2
+        s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+exp(-t) - exp(-t) (cos(t) - sin(t))
+
+ 
+APLICAMOS TRANSFORMADA DE FOURIER
+ 
+          2
+2 Y(w) - w  Y(w) + w Y(w) 2i
+
+=
+2 X(w) + w X(w) 1i
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+          2
+2 Y(w) - w  Y(w) + w Y(w) 2i
+
+=
+  w 1i         2
+-------- + --------
+1 + w 1i   1 + w 1i
+
+ 
+DESPEJAMOS Y(w)
+ 
+Y(w)=
+   4    3         2
+  w  + w  1i + 2 w  + w 6i - 4
+- ----------------------------
+        6    4      2
+       w  + w  + 4 w  + 4
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(w)
+ 
+Y(w)=
+    / 1   1  \          / 1   1  \
+  w | - - -i | + 1i   w | - + -i | + 1i
+    \ 2   2  /          \ 2   2  /        - 1 + w 1i
+- ----------------- + ----------------- - ----------
+      2                   2                  2
+     w  - 2 w + 2        w  + 2 w + 2       w  + 1
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+/
+| pi exp(-|t|) + pi #4 (sign(t) + 1) #2 + pi #3 (sign(t) + 1)
+\
+
+                                              / 1   1  \
+   #1 + pi exp(-|t|) sign(t) + pi #4 dirac(t) | - - -i |
+                                              \ 2   2  /
+
+                    / 1   1  \
+   + pi #3 dirac(t) | - + -i | + pi exp(t (1 - i)) dirac(t) #2
+                    \ 2   2  /
+
+                                    \
+   + pi exp(t (1 + 1i)) dirac(t) #1 |/(2 pi)
+                                    /
+
+where
+
+           1   1
+   #1 == - - - -i
+           2   2
+
+           1   1
+   #2 == - - + -i
+           2   2
+
+   #3 == exp(t (- 1 + 1i))
+
+   #4 == exp(t (- 1 - i))
+
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_03.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_04.png" alt=""> <h2 id="5">Problema 1.5 (Sistemas Diferenciales)</h2><p>Respuesta Total</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq02499968060523958163.png" alt="$\ddot{y}+2\dot{y}+2y=\dot{x}+2x$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq05733120675232018958.png" alt="$x(t)=e^{-t}u(t)$"> Y condiciones iniciales: <img src="ASySPrac6MarcoRodriguez_eq03980370533641409157.png" alt="${y}'(0)=1, y(0)=1$"></p><div><ul><li>Laplace</li></ul></div><pre class="codeinput">laplace2016a([2 2 1], [2 1], [1 1], [0], exp(-t).*heaviside(t), 5, 5)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA DE LAPLACE y subtituimos condiciones iniciales
+ 
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 3
+
+=
+2 X(s) + s X(s)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 3
+
+=
+  s       2
+----- + -----
+s + 1   s + 1
+
+ 
+DESPEJAMOS Y(s)
+ 
+Y(s)=
+     2
+    s  + 5 s + 5
+-------------------
+ 3      2
+s  + 3 s  + 4 s + 2
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(s)
+ 
+Y(s)=
+  1           3
+----- + ------------
+s + 1    2
+        s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+exp(-t) + 3 exp(-t) sin(t)
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_05.png" alt=""> <h2 id="6">Problema 1.6 (Sistemas Diferenciales)</h2><p>La respuesta total al escal&oacute;n con condiciones iniciales 0</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq02499968060523958163.png" alt="$\ddot{y}+2\dot{y}+2y=\dot{x}+2x$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq10441982471041645248.png" alt="$x(t)=u(t)$"> Y condiciones iniciales: <img src="ASySPrac6MarcoRodriguez_eq08511338008436739230.png" alt="${y}'(0)=0, y(0)=0$"></p><div><ul><li>Laplace y Fourier</li></ul></div><pre class="codeinput">laplace2016a([2 2 1], [2 1], [0 0], [0], heaviside(t), 5, 6)
+fourier2016a([2 2 1], [2 1], heaviside(t), 5, 7)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA DE LAPLACE y subtituimos condiciones iniciales
+ 
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+=
+2 X(s) + s X(s)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+=
+2
+- + 1
+s
+
+ 
+DESPEJAMOS Y(s)
+ 
+Y(s)=
+     s + 2
+---------------
+ 3      2
+s  + 2 s  + 2 s
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(s)
+ 
+Y(s)=
+1       s + 1
+- - ------------
+s    2
+    s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+1 - exp(-t) cos(t)
+
+ 
+APLICAMOS TRANSFORMADA DE FOURIER
+ 
+          2
+2 Y(w) - w  Y(w) + w Y(w) 2i
+
+=
+2 X(w) + w X(w) 1i
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+          2
+2 Y(w) - w  Y(w) + w Y(w) 2i
+
+=
+                2i     /               1i \
+2 pi dirac(w) - -- + w | pi dirac(w) - -- | 1i
+                 w     \                w /
+
+ 
+DESPEJAMOS Y(w)
+ 
+Y(w)=
+         3                         2                   4
+  2 w + w  - 4 pi w dirac(w) + pi w  dirac(w) 2i + pi w  dirac(w) 1i + 4i
+- -----------------------------------------------------------------------
+                                   5
+                                  w  + 4 w
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(w)
+ 
+Y(w)=
+                /             / 1   1  \   1  \   1   1
+pi dirac(w) + w | pi dirac(w) | - - -i | + -i | - - + -i
+                \             \ 2   2  /   2  /   2   2
+--------------------------------------------------------
+                       2
+                      w  + 2 w + 2
+
+                       /             / 1   1  \   1  \   1   1
+     - pi dirac(w) + w | pi dirac(w) | - + -i | - -i | + - + -i
+                       \             \ 2   2  /   2  /   2   2    1i
+   - ---------------------------------------------------------- - --
+                             2                                     w
+                            w  - 2 w + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+/                   pi #2 (sign(t) + 1)   pi #1 (sign(t) + 1)
+| pi + pi sign(t) - ------------------- - -------------------
+\                            2                     2
+
+     pi #2 dirac(t)   pi #1 dirac(t)   pi exp(t (1 - i)) dirac(t)
+   + -------------- + -------------- - --------------------------
+            2                2                      2
+
+     pi exp(t (1 + 1i)) dirac(t) \
+   - --------------------------- |/(2 pi)
+                  2              /
+
+where
+
+   #1 == exp(t (- 1 + 1i))
+
+   #2 == exp(t (- 1 - i))
+
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_06.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_07.png" alt=""> <h2 id="7">Problema 2.1 (Sistemas en Diferencias)</h2><p>Desarrollo</p><h2 id="8">Problema 2.2 (Sistemas en Diferencias)</h2><p>Respuesta al impulso</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq01569282092998710335.png" alt="$6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq12182991615585236355.png" alt="$x(t)=\delta[n]$"> Y condiciones inicales: <img src="ASySPrac6MarcoRodriguez_eq03347720942985425118.png" alt="$y[0]=1, y[1]=2$"></p><pre class="codeinput">syms <span class="string">n</span>;
+zeta2016a([6 5 1], [1 1], [2 1], [0], kroneckerDelta(n), 5, 8)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA ZETA 
+ 
+          2                                            2
+Y(z) + 6 z  Y(z) - 5 z y(0) - 6 z y(1) + 5 z Y(z) - 6 z  y(0)
+
+=
+X(z) - z x(0) + z X(z)
+
+ 
+SUBSTITUIMOS CONDICIONES INICIALES
+ 
+                 2                      2
+Y(z) - 17 z + 6 z  Y(z) + 5 z Y(z) - 6 z
+
+=
+X(z) + z X(z)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+                 2                      2
+Y(z) - 17 z + 6 z  Y(z) + 5 z Y(z) - 6 z
+
+=
+z + 1
+
+ 
+DESPEJAMOS Y(z)
+ 
+Y(z)=
+   2
+6 z  + 18 z + 1
+---------------
+    2
+ 6 z  + 5 z + 1
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(z)
+ 
+Y(z)=
+   13        13
+------- - ------- + 1
+2 z + 1   3 z + 1
+
+ 
+Aplicamos transformada inversa, asi la solucion es
+ 
+y(n)=
+   /   1 \n      /   1 \n
+13 | - - |  - 13 | - - |  + kroneckerDelta(n, 0)
+   \   3 /       \   2 /
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_08.png" alt=""> <h2 id="9">Problema 2.3 (Sistemas en Diferencias)</h2><p>Respuesta a entrada cero</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq01569282092998710335.png" alt="$6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq00736050422152422280.png" alt="$x(t)=0$"> Y condiciones inicales: <img src="ASySPrac6MarcoRodriguez_eq03347720942985425118.png" alt="$y[0]=1, y[1]=2$"></p><pre class="codeinput">zeta2016a([6 5 1], [1 1], [2 1], [0], n.*0, 5, 9)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA ZETA 
+ 
+          2                                            2
+Y(z) + 6 z  Y(z) - 5 z y(0) - 6 z y(1) + 5 z Y(z) - 6 z  y(0)
+
+=
+X(z) - z x(0) + z X(z)
+
+ 
+SUBSTITUIMOS CONDICIONES INICIALES
+ 
+                 2                      2
+Y(z) - 17 z + 6 z  Y(z) + 5 z Y(z) - 6 z
+
+=
+X(z) + z X(z)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+                 2                      2
+Y(z) - 17 z + 6 z  Y(z) + 5 z Y(z) - 6 z
+
+=
+0
+
+ 
+DESPEJAMOS Y(z)
+ 
+Y(z)=
+     2
+  6 z  + 17 z
+--------------
+   2
+6 z  + 5 z + 1
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(z)
+ 
+Y(z)=
+   14        15
+------- - ------- + 1
+2 z + 1   3 z + 1
+
+ 
+Aplicamos transformada inversa, asi la solucion es
+ 
+y(n)=
+   /   1 \n      /   1 \n
+15 | - - |  - 14 | - - |
+   \   3 /       \   2 /
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_09.png" alt=""> <h2 id="10">Problema 2.4 (Sistemas en Diferencias)</h2><p>Respuesta a estado cero</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq01569282092998710335.png" alt="$6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq00029705158474977333.png" alt="$x(t)=u[0]$"> Y condiciones inicales: <img src="ASySPrac6MarcoRodriguez_eq02282955515114905530.png" alt="$y[0]=0, y[1]=0$"></p><pre class="codeinput">zeta2016a([6 5 1], [1 1], [0 0], [0], heaviside(n), 5, 10)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA ZETA 
+ 
+          2                                            2
+Y(z) + 6 z  Y(z) - 5 z y(0) - 6 z y(1) + 5 z Y(z) - 6 z  y(0)
+
+=
+X(z) - z x(0) + z X(z)
+
+ 
+SUBSTITUIMOS CONDICIONES INICIALES
+ 
+          2
+Y(z) + 6 z  Y(z) + 5 z Y(z)
+
+=
+X(z) + z X(z)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+          2
+Y(z) + 6 z  Y(z) + 5 z Y(z)
+
+=
+  1       /   1       \
+----- + z | ----- + 1 | + 1
+z - 1     \ z - 1     /
+
+ 
+DESPEJAMOS Y(z)
+ 
+Y(z)=
+           2
+          z  + z
+- ---------------------
+       3    2
+  - 6 z  + z  + 4 z + 1
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(z)
+ 
+Y(z)=
+    1            1             1
+--------- - ----------- + -----------
+6 (z - 1)   (2 z + 1) 3   (3 z + 1) 2
+
+ 
+Aplicamos transformada inversa, asi la solucion es
+ 
+y(n)=
+/   1 \n   /   1 \n
+| - - |    | - - |
+\   2 /    \   3 /    1
+-------- - -------- + -
+    3          2      6
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_10.png" alt=""> <h2 id="11">Problema 2.5 (Sistemas en Diferencias)</h2><p>Respuesta Total</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq01569282092998710335.png" alt="$6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq00029705158474977333.png" alt="$x(t)=u[0]$"> Y condiciones inicales: <img src="ASySPrac6MarcoRodriguez_eq03347720942985425118.png" alt="$y[0]=1, y[1]=2$"></p><pre class="codeinput">zeta2016a([6 5 1], [1 1], [2 1], [0], heaviside(n), 5, 11)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA ZETA 
+ 
+          2                                            2
+Y(z) + 6 z  Y(z) - 5 z y(0) - 6 z y(1) + 5 z Y(z) - 6 z  y(0)
+
+=
+X(z) - z x(0) + z X(z)
+
+ 
+SUBSTITUIMOS CONDICIONES INICIALES
+ 
+                 2                      2
+Y(z) - 17 z + 6 z  Y(z) + 5 z Y(z) - 6 z
+
+=
+X(z) + z X(z)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+                 2                      2
+Y(z) - 17 z + 6 z  Y(z) + 5 z Y(z) - 6 z
+
+=
+  1       /   1       \
+----- + z | ----- + 1 | + 1
+z - 1     \ z - 1     /
+
+ 
+DESPEJAMOS Y(z)
+ 
+Y(z)=
+      3       2
+   6 z  + 12 z  - 16 z
+- ---------------------
+       3    2
+  - 6 z  + z  + 4 z + 1
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(z)
+ 
+Y(z)=
+    1            41            29
+--------- + ----------- - ----------- + 1
+6 (z - 1)   (2 z + 1) 3   (3 z + 1) 2
+
+ 
+Aplicamos transformada inversa, asi la solucion es
+ 
+y(n)=
+   /   1 \n      /   1 \n
+29 | - - |    41 | - - |
+   \   3 /       \   2 /    1
+----------- - ----------- + -
+     2             3        6
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_11.png" alt=""> <h2 id="12">Problema 2.6 (Sistemas en Diferencias)</h2><p>La respuesta total al escal&oacute;n con condiciones iniciales 0</p><p>Usando la Ecuacion: <img src="ASySPrac6MarcoRodriguez_eq01569282092998710335.png" alt="$6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$"> Con entrada: <img src="ASySPrac6MarcoRodriguez_eq00029705158474977333.png" alt="$x(t)=u[0]$"> Y condiciones inicales: <img src="ASySPrac6MarcoRodriguez_eq02282955515114905530.png" alt="$y[0]=0, y[1]=0$"></p><pre class="codeinput">zeta2016a([6 5 1], [1 1], [0 0], [0], heaviside(n), 5, 12)
+</pre><pre class="codeoutput"> 
+APLICAMOS TRANSFORMADA ZETA 
+ 
+          2                                            2
+Y(z) + 6 z  Y(z) - 5 z y(0) - 6 z y(1) + 5 z Y(z) - 6 z  y(0)
+
+=
+X(z) - z x(0) + z X(z)
+
+ 
+SUBSTITUIMOS CONDICIONES INICIALES
+ 
+          2
+Y(z) + 6 z  Y(z) + 5 z Y(z)
+
+=
+X(z) + z X(z)
+
+ 
+SUBSTITUIMOS LA TRANSFORMADA DE LA ENTRADA
+ 
+          2
+Y(z) + 6 z  Y(z) + 5 z Y(z)
+
+=
+  1       /   1       \
+----- + z | ----- + 1 | + 1
+z - 1     \ z - 1     /
+
+ 
+DESPEJAMOS Y(z)
+ 
+Y(z)=
+           2
+          z  + z
+- ---------------------
+       3    2
+  - 6 z  + z  + 4 z + 1
+
+ 
+DESARROLLAMOS LAS FRACCIONES PARCIALES DE Y(z)
+ 
+Y(z)=
+    1            1             1
+--------- - ----------- + -----------
+6 (z - 1)   (2 z + 1) 3   (3 z + 1) 2
+
+ 
+Aplicamos transformada inversa, asi la solucion es
+ 
+y(n)=
+/   1 \n   /   1 \n
+| - - |    | - - |
+\   2 /    \   3 /    1
+-------- - -------- + -
+    3          2      6
+
+</pre><img vspace="5" hspace="5" src="ASySPrac6MarcoRodriguez_12.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Práctica 7: Sistemas diferenciales y en diferencias
+
+%% Problema 1.1 (Sistemas Diferenciales)
+%
+% Función de transferencia del sistema
+% 
+% Usando la Ecuacion: 
+% $\ddot{y}+2\dot{y}+2y=\dot{x}+2x$ 
+% Con entrada: 
+% $x(t)=e^{-t}u(t)$ 
+% Y condiciones inicales: 
+% ${y}'(0)=0, y(0)=0$ 
+%
+% Conociendo que la transformada de Laplace de $x(t)=e^{-t}u(t) \Leftrightarrow X(s)=\frac{1}{s+1}$
+% y que $Y(s)=\frac{\frac{2}{s+1}+\frac{s}{s+1}}{s^{2}+2s+2}$
+% 
+% sustituyendo en $H(s)=\frac{Y(s)}{X(s)}$ tenemos: 
+% $H(s)=\frac{s+2}{s^{2}+2s+2}$
+
+%% Problema 1.2 (Sistemas Diferenciales)
+%
+% Respuesta al impulso
+% 
+% Usando la Ecuacion:
+% $\ddot{y}+2\dot{y}+2y=\dot{x}+2x$
+% Con entrada:
+% $x(t)=\delta(t)$
+% Y condiciones inicales:
+% ${y}'(0)=1, y(0)=1$
+%
+% * Laplace
+
+syms t;
+laplace2016a([2 2 1], [2 1], [1 1], [0], dirac(t), 5, 1)
+
+%% Problema 1.3 (Sistemas Diferenciales)
+%
+% Respuesta a entrada cero
+%
+% Usando la Ecuacion:
+% $\ddot{y}+2\dot{y}+2y=\dot{x}+2x$
+% Con entrada cero:
+% $x(t)=0$
+% Y condiciones inicales:
+% ${y}'(0)=1, y(0)=1$
+%
+% * Laplace
+
+laplace2016a([2 2 1], [2 1], [1 1], [0], t.*0, 5, 2)
+
+%% Problema 1.4 (Sistemas Diferenciales)
+%
+% Respuesta a estado cero
+%
+% Usando la Ecuacion:
+% $\ddot{y}+2\dot{y}+2y=\dot{x}+2x$
+% Con entrada:
+% $x(t)=e^{-t}u(t)$
+% Y estado cero:
+% ${y}'(0)=0, y(0)=0$
+%
+% * Laplace y Fourier
+
+laplace2016a([2 2 1], [2 1], [0 0], [0], exp(-t).*heaviside(t), 5, 3)
+fourier2016a([2 2 1], [2 1], exp(-t).*heaviside(t), 5, 4)
+
+%% Problema 1.5 (Sistemas Diferenciales)
+%
+% Respuesta Total
+%
+% Usando la Ecuacion:
+% $\ddot{y}+2\dot{y}+2y=\dot{x}+2x$
+% Con entrada:
+% $x(t)=e^{-t}u(t)$
+% Y condiciones iniciales:
+% ${y}'(0)=1, y(0)=1$
+%
+% * Laplace
+
+laplace2016a([2 2 1], [2 1], [1 1], [0], exp(-t).*heaviside(t), 5, 5)
+
+%% Problema 1.6 (Sistemas Diferenciales)
+%
+% La respuesta total al escalón con condiciones iniciales 0 
+%
+% Usando la Ecuacion:
+% $\ddot{y}+2\dot{y}+2y=\dot{x}+2x$
+% Con entrada:
+% $x(t)=u(t)$
+% Y condiciones iniciales:
+% ${y}'(0)=0, y(0)=0$
+%
+% * Laplace y Fourier
+
+laplace2016a([2 2 1], [2 1], [0 0], [0], heaviside(t), 5, 6)
+fourier2016a([2 2 1], [2 1], heaviside(t), 5, 7)
+
+%% Problema 2.1 (Sistemas en Diferencias)
+%
+% Desarrollo
+
+%% Problema 2.2 (Sistemas en Diferencias)
+%
+% Respuesta al impulso
+% 
+% Usando la Ecuacion:
+% $6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$
+% Con entrada:
+% $x(t)=\delta[n]$
+% Y condiciones inicales:
+% $y[0]=1, y[1]=2$
+
+syms n;
+zeta2016a([6 5 1], [1 1], [2 1], [0], kroneckerDelta(n), 5, 8)
+
+%% Problema 2.3 (Sistemas en Diferencias)
+%
+% Respuesta a entrada cero
+%
+% Usando la Ecuacion:
+% $6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$
+% Con entrada:
+% $x(t)=0$
+% Y condiciones inicales:
+% $y[0]=1, y[1]=2$
+%
+
+zeta2016a([6 5 1], [1 1], [2 1], [0], n.*0, 5, 9)
+
+%% Problema 2.4 (Sistemas en Diferencias)
+%
+% Respuesta a estado cero
+%
+% Usando la Ecuacion:
+% $6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$
+% Con entrada:
+% $x(t)=u[0]$
+% Y condiciones inicales:
+% $y[0]=0, y[1]=0$
+%
+
+zeta2016a([6 5 1], [1 1], [0 0], [0], heaviside(n), 5, 10)
+
+%% Problema 2.5 (Sistemas en Diferencias)
+%
+% Respuesta Total
+%
+% Usando la Ecuacion:
+% $6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$
+% Con entrada:
+% $x(t)=u[0]$
+% Y condiciones inicales:
+% $y[0]=1, y[1]=2$
+%
+
+zeta2016a([6 5 1], [1 1], [2 1], [0], heaviside(n), 5, 11)
+
+%% Problema 2.6 (Sistemas en Diferencias)
+%
+% La respuesta total al escalón con condiciones iniciales 0 
+%
+% Usando la Ecuacion:
+% $6y[n+2]+5y[n+1]+y[n]=x[n+1]+x[n]$
+% Con entrada:
+% $x(t)=u[0]$
+% Y condiciones inicales:
+% $y[0]=0, y[1]=0$
+%
+
+zeta2016a([6 5 1], [1 1], [0 0], [0], heaviside(n), 5, 12)
+
+##### SOURCE END #####
+--></body></html>
